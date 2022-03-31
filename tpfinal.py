@@ -47,6 +47,7 @@ while 1==1 :
 
 
     cur.execute("INSERT INTO bitvalue (valeur,date) VALUES ("+str(price)+","+str(timestamp/1000)+");")
+    con.commit()
     con.close()
     time.sleep(60)
 
