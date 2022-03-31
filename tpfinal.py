@@ -13,35 +13,27 @@ params = None
 # Création d'une boucle pour récupérer valeur du bitcoin + la date 
 # les requêtes sont effectuées chaque minute
 
+while 1==1 :
+    url = "https://api.binance.com/api/v3/ticker/price?symbol=BTCEUR"
+    reponse = requests.get(url)
+    data2=reponse.json()
+    print(reponse.json())
 
-    #time.sleep(60)
+    for cle, valeur in data2.items():
+        price=valeur
 
-url = "https://api.binance.com/api/v3/ticker/price?symbol=BTCEUR"
-reponse = requests.get(url)
-data2=reponse.json()
-print(reponse.json())
+    urlt=urljoin('https://api.binance.com','/api/v1/time')
+    r = requests.get(urlt, params=params)
 
-for cle, valeur in data2.items():
-    price=valeur
-    
+    print(r.json())
+    data=r.json()
+    for cle, valeur in data.items():
+        timestamp=valeur
+        
+    dt_object = datetime.fromtimestamp(timestamp/1000)
+    print(dt_object)
+    time.sleep(60)
 
-print(price)
-
-
-urlt=urljoin('https://api.binance.com','/api/v1/time')
-r = requests.get(urlt, params=params)
-
-
-
-#timestamp = r
-print(r.json())
-data=r.json()
-for cle, valeur in data.items():
-    timestamp=valeur
-    
-    
-dt_object = datetime.fromtimestamp(timestamp/1000)
-print(dt_object)
 
 # sqlite
 
@@ -55,20 +47,7 @@ print(now)
 
 
 cur.execute("INSERT INTO bitvalue (valeur,date) VALUES ("+str(price)+","+str(timestamp/1000)+");")
-
-
-
 con.close()
-
-
-
-
-
-
-    
-  
-
-
 
 
 
