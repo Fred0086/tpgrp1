@@ -32,24 +32,22 @@ while 1==1 :
         
     dt_object = datetime.fromtimestamp(timestamp/1000)
     print(dt_object)
+    
+
+
+    # sqlite
+
+    con = sqlite3.connect('tpgr1.db')   #créa en local 
+    cur = con.cursor()
+    now=datetime.now()
+    
+
+    ###### To Recerate table if needed : 
+    #           cur.execute("Create table IF NOT EXISTS bitvalue (id int, valeur float,date timestamp);")
+
+
+    cur.execute("INSERT INTO bitvalue (valeur,date) VALUES ("+str(price)+","+str(timestamp/1000)+");")
+    con.close()
     time.sleep(60)
 
 
-# sqlite
-
-con = sqlite3.connect('tpgr1.db')   #créa en local 
-cur = con.cursor()
-now=datetime.now()
-print(now)
-
-###### To Recerate table if needed : 
-#           cur.execute("Create table IF NOT EXISTS bitvalue (id int, valeur float,date timestamp);")
-
-
-cur.execute("INSERT INTO bitvalue (valeur,date) VALUES ("+str(price)+","+str(timestamp/1000)+");")
-con.close()
-
-
-
-
-#boucle pour fr des requetes 1 chaque minute, récup date et heure, (euros, )
