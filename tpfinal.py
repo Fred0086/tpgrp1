@@ -6,7 +6,6 @@ import time
 import json
 import hmac
 import hashlib
-import requests
 from urllib.parse import urljoin, urlencode
 
 params = None
@@ -50,9 +49,14 @@ con = sqlite3.connect('tpgr1.db')   #créa en local
 cur = con.cursor()
 now=datetime.now()
 print(now)
-cur.execute("INSERT INTO bitvalue (valeur,date) VALUES ("+price+","+now+");")
 
-#cur.execute("Create table IF NOT EXISTS bitvalue (id int, valeur float,date datetime);")
+###### To Recerate table if needed : 
+#           cur.execute("Create table IF NOT EXISTS bitvalue (id int, valeur float,date timestamp);")
+
+
+cur.execute("INSERT INTO bitvalue (valeur,date) VALUES ("+str(price)+","+str(timestamp/1000)+");")
+
+
 
 con.close()
 
