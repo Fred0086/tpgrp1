@@ -43,12 +43,13 @@ while 1==1 :
     
 
     ###### To Recerate table if needed : 
-    #           cur.execute("Create table IF NOT EXISTS bitvalue (id int, valeur float,date timestamp);")
-
-
-    cur.execute("INSERT INTO bitvalue (valeur,date) VALUES ("+str(price)+","+str(timestamp/1000)+");")
+    #cur.execute("Create table IF NOT EXISTS bitvalue (id int PRIMARY KEY AUTOINCREMENT, valeur float,date bigint);")
+    req="INSERT INTO bitvalue (valeur,date) VALUES ("+str(price)+","+str(round(timestamp/1000))+");"
+    print(req)
+    cur.execute(req)
     con.commit()
     con.close()
-    time.sleep(60)
+    time.sleep(1)
+    #quit()
 
 

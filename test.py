@@ -1,9 +1,9 @@
 import sqlite3
 
-con = sqlite3.connect("/home/julianne/cloned_git/tpgrp1/tpgr1.db")
+con = sqlite3.connect("tpgr1.db")
 cur= con.cursor()
  
-for line in cur.execute("SELECT * FROM BITVALUE ;"):
+for line in cur.execute("SELECT * FROM bitvalue ;"):
     print(line)
 
 
