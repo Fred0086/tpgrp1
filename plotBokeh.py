@@ -27,9 +27,12 @@ df = pd.read_sql_query("SELECT * FROM bitvalue ;", con)
 
 # # create a ColumnDataSource by passing the dict
 source = ColumnDataSource(data=df)
-#y2 = pd.DataFrame(df,columns=['valeur'])*1.9
+y2 = df.copy()
+y2['valeur']=y2['valeur']*1.1
 #print(y2)
 
+dollarsource = ColumnDataSource(data=y2)
+print(y2)
 # # create a plot using the ColumnDataSource's two columns
 p = figure(title="Bitcoin Values",
         sizing_mode="stretch_width",    
@@ -39,26 +42,50 @@ p = figure(title="Bitcoin Values",
         y_axis_label='Bitcoin Values (euros) ',
         toolbar_location=None,
         tools=[HoverTool()],   
-        tooltips=[("Time   ", "@id" ),
+        tooltips=[("Time   ", "@date" ),
                   ("Bitcoin", "@valeur")]
         )
 output_file("index.html")
 p.title.align = 'center'
 p.title.text_font_size = '15pt'
-p.line(x='id',
+# p.line(x='id',
+#         y='valeur',
+#         source=source)
+
+p.line(x='date',
         y='valeur',
+        line_color='orange',
         source=source)
-p.circle(x='id', 
+p.line(x='date',
+        y='valeur',
+        line_color='green',
+        source=dollarsource)
+
+p.circle(x='date', 
         y='valeur', 
         line_color="red", 
         line_width=2,
         source=source)
 
-
-p.yaxis[0].formatter = NumeralTickFormatter(format="$0.00") 
-p.xaxis[0].formatter = DatetimeTickFormatter(months="%b %Y")
+DTF =  DatetimeTickFormatter()
+#DTF.hours = ["%H:%M"]
+# # DTF.days = ["%d/%m/%Y"]
+# # DTF.months = ["%d/%m/%Y"]
+# DTF.years = ["%d/%m/%Y"]
+DTF.minutes = ["%m/%d %H:%M"]
+# p.yaxis[0].formatter = NumeralTickFormatter(format="$0.00") 
+p.xaxis[0].formatter = DTF
 
 
 p.background_fill_color = ('#cccccc')
 p.outline_line_color = (0, 0, 255)
 show(p)
+
+
+
+
+
+
+
+
+p.xaxis.formatter = DTF
