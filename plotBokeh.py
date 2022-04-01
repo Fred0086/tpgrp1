@@ -71,6 +71,18 @@ p.circle(x='date',
         line_width=2,
         source=source)
 
+# add bands to the y-grid
+p.ygrid.band_fill_color = "olive"
+p.ygrid.band_fill_alpha = 0.1
+
+DTF =  DatetimeTickFormatter()
+#DTF.hours = ["%H:%M"]
+# # DTF.days = ["%d/%m/%Y"]
+# # DTF.months = ["%d/%m/%Y"]
+# DTF.years = ["%d/%m/%Y"]
+DTF.minutes = ["%m/%d %H:%M"]
+# p.yaxis[0].formatter = NumeralTickFormatter(format="$0.00") 
+p.xaxis[0].formatter = DTF
 
 
 
