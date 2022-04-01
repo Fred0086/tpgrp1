@@ -1,0 +1,10 @@
+[Unit]
+Description=Plot Bokeh Bitcoins
+
+[Service]
+WorkingDirectory=/var/www/html
+ExecStart=/usr/bin/python3 /var/www/html/plotBokeh.py
+
+[Install]
+WantedBy=multi-user.target
+

@@ -1,0 +1,10 @@
+[Unit]
+Description=Fetch Bitcoins Datas
+
+[Service]
+WorkingDirectory=/home/projet
+ExecStart=/usr/bin/python3 /var/www/html/tpfinal.py
+
+[Install]
+WantedBy=multi-user.target
+
