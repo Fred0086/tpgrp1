@@ -6,6 +6,7 @@ import mysql.connector
 import pandas as pd
 from bokeh.models import NumeralTickFormatter
 from bokeh.models import DatetimeTickFormatter
+from bokeh.io import curdoc
 
 #récuperation des données 
 
@@ -35,7 +36,7 @@ dollarsource = ColumnDataSource(data=y2)
 print(y2)
 # # create a plot using the ColumnDataSource's two columns
 p = figure(title="Bitcoin Values",
-        sizing_mode="stretch_width",    
+        sizing_mode="stretch_both",    
         plot_width=900, 
         plot_height=800, 
         x_axis_label='Times (min) ', 
@@ -46,6 +47,9 @@ p = figure(title="Bitcoin Values",
                   ("Bitcoin", "@valeur")]
         )
 output_file("index.html")
+
+curdoc().theme = 'night_sky'
+
 p.title.align = 'center'
 p.title.text_font_size = '15pt'
 # p.line(x='id',
@@ -77,7 +81,7 @@ DTF.minutes = ["%m/%d %H:%M"]
 p.xaxis[0].formatter = DTF
 
 
-p.background_fill_color = ('#cccccc')
+p.background_fill_color = ('#2F2F2F')
 p.outline_line_color = (0, 0, 255)
 show(p)
 
