@@ -1,1 +1,20 @@
-TP Groupe 1
+Application permettant de récupérer la valeur du Bitcoin,
+	Via une BDD mis à jour en continu, 
+	via un graphique dynamique 	
+	également par mail en nous indiquant si le cours du bitcoin est en augmentation ou en baisse
+
+Cote client : 
+	se diriger directement vers : https://51.77.159.222/
+	Obtenir une interphase graphique de cours du Bitcoin 
+
+Cote Serveur : 
+	tpfinal.py   : Script permettant de récuperer les données sur le Bitcoin en temps réel 
+		       Création de la BDD au format SQL 
+	
+	tpgr1.db     : Base de donné (temps, valeur du bitcoin)
+
+	plotBokeh.py : Permet de génerer l'interphase graphique via une bibliothèque python (BOKEH)
+	
+	SendMail.py  : Calcule  si le cours du bitcoin augmente ou diminue  5 fois d'affiler.
+
+	mailUP/mailDown : Script permettant d'envoyer le mail 
